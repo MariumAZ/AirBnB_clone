@@ -1,14 +1,26 @@
 #!usr/bin/env python3
 
-import datetime
+import datetime 
 import uuid
 
 
 class BaseModel():
-    def __init__(self) -> None:
-        self.id =str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now() 
+    def __init__(self, *args, **kwargs):
+        
+        if kwargs:
+            for k, v in kwargs.items():
+                if k  == 'created_at' :
+                    self.created_at = datetime.datetime.fromisoformat(v)
+                elif k  == 'updated_at' :  
+                    self.updated_at = datetime.datetime.fromisoformat(v)
+                elif k == 'id':
+                    self.id = v   
+        else:
+            self.id =str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now() 
+        
+
     def __str__(self):
         """
         custom str function
