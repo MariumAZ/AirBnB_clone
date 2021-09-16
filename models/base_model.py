@@ -23,8 +23,10 @@ class BaseModel():
     def save(self):
         """updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.now()
+        pass
 
     def to_dict(self): 
+        """ returns dictionary """
         dic = self.__dict__
         dic['__class__'] = self.__class__.__name__
         dic['created_at'] = self.created_at.isoformat()
