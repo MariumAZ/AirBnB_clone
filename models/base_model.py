@@ -16,15 +16,10 @@ class BaseModel():
     def __str__(self) -> str:
         info = "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__) 
         return info
-    def save(self):
-        """
-        updates the public instance attribute with the current datetime 
-        """      
+    def save(self): 
         self.updated_at = datetime.now()
-    def to_dict(self):
-        """
-        returns all the keys/values of __dict__ of the innstance 
-        """    
+
+    def to_dict(self):  
         dic = self.__dict__
         dic['__class__'] = self.__class__.__name__
         #convert created_at and updated_at to string in ISO format
