@@ -9,7 +9,6 @@ class BaseModel():
     Base Model class
     """
     def __init__(self) -> None:
-        #have a unique id for each model 
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -19,15 +18,15 @@ class BaseModel():
     def save(self): 
         """updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.now()
-
     def to_dict(self):  
-        
         dic = self.__dict__
         dic['__class__'] = self.__class__.__name__
-        #convert created_at and updated_at to string in ISO format
-        dic['created_at'] = dic['created_at'].isoformat()
-        dic['updated_at'] = dic['updated_at'].isoformat()
+        dic['created_at'] = self.created_at.isoformat()
+        dic['updated_at'] = self.updated_at.isoformat()
         return dic
+        
+
+
 
 
 
