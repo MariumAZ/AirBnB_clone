@@ -21,6 +21,7 @@ class BaseModel():
         self.updated_at = datetime.now()
 
     def to_dict(self):  
+        
         dic = self.__dict__
         dic['__class__'] = self.__class__.__name__
         #convert created_at and updated_at to string in ISO format
