@@ -17,6 +17,7 @@ class BaseModel():
         info = "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__) 
         return info
     def save(self): 
+        """updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.now()
 
     def to_dict(self):  
