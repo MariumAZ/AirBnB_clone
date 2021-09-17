@@ -1,4 +1,3 @@
 # Byte-compiled / optimized / DLL files
-test_base_model.py
-models/__pycache__
-tests/__pycache__
+__pycache__
+
