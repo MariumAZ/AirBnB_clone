@@ -16,19 +16,16 @@ class FileStorage:
         if obj:
             key = str(obj.__class__.__name__) + '.' + obj.id
             FileStorage.__objects[key] = obj
-
-
-        #if obj in FileStorage.__objects:
-         #   FileStorage.__objects.update({obj: obj.__class__.__name__ + '.' + obj.id})
-
     def save(self):
         """
         serializes __objects to the json file
         """
-
         with open(FileStorage.__file_path, 'w') as f:
             for k, obj in FileStorage.__objects.items():
-                FileStorage.__objects[k] = obj.to_dict()
+                if isinstance(obj, dict):
+                    FileStorage.__objects[k] = obj
+                else:    
+                    FileStorage.__objects[k] = obj.to_dict()
             json.dump(FileStorage.__objects, f)
 
     def reload(self):
@@ -37,7 +34,6 @@ class FileStorage:
                 data = json.load(fp)
                 for key, v in data.items():
                     FileStorage.__objects[key] = eval(v['__class__'])(**v)
-
         else:
             return
 
