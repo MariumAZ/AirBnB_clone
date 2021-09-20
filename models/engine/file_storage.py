@@ -3,6 +3,7 @@
 import json
 import os
 from models.base_model import BaseModel
+from models import storage
 
 
 class FileStorage:
@@ -16,6 +17,7 @@ class FileStorage:
         if obj:
             key = str(obj.__class__.__name__) + '.' + obj.id
             FileStorage.__objects[key] = obj
+
     def save(self):
         """
         serializes __objects to the json file
@@ -26,7 +28,7 @@ class FileStorage:
                     FileStorage.__objects[k] = obj
                 else:    
                     FileStorage.__objects[k] = obj.to_dict()
-            json.dump(FileStorage.__objects, f)
+            json.dump(FileStorage.__objects, f)     
 
     def reload(self):
         if os.path.exists(FileStorage.__file_path):
