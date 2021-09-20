@@ -2,7 +2,6 @@
 
 from unittest import TestCase
 from models.engine.file_storage import FileStorage
-from models import base_model
 import os
 
 class TestFileStorage(TestCase):
@@ -25,6 +24,7 @@ class TestFileStorage(TestCase):
         """
         tests that new adds an object to    
         """
+        from models import base_model
         storage = FileStorage()
         dict = storage.__objects.copy()
         new_instance = base_model.BaseModel()
