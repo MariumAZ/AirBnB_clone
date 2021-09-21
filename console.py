@@ -9,7 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """
     
     prompt = '(hbnb)'
-    intro = "-------------- Welcome to AirBnB console --------------  "
+    #intro = "-------------- Welcome to AirBnB console --------------  "
    
     def do_quit(self, arg):
         """ Quit command to exit the program """
