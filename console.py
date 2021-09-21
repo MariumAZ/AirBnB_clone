@@ -63,8 +63,8 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 print(dic_objects[key])
-    def do_show(self, arg):
-        args = shlex.split(arg)
+    def do_show(self, args):
+        args = shlex.split(args)
         if len(args) == 0:
             print("** class name missing **")
             return False
@@ -78,7 +78,27 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** instance id missing **")
         else:
-            print("** class doesn't exist **")            
+            print("** class doesn't exist **")           
+    def do_destroy(self, args):
+        """ destroys an instance """
+        args = shlex.split(args)
+        if len(args) == 0:
+            print("** class name missing **")
+            return False
+        if args[0] in class_names:
+            if len(args) > 1:
+                key = args[0] + "." + args[1]
+                if key in storage.all():
+                    del storage.all()[key]
+                    storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")    
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
