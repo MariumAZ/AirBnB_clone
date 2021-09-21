@@ -41,6 +41,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")  
     def do_show(self, args):
+        """Prints an instance as a string based on the class and id"""
         l = shlex.split(args)
         if len(l) == 0:
             print("** class name missing **")
