@@ -5,6 +5,7 @@ import cmd
 from models.base_model import BaseModel
 import shlex
 from models import storage
+import models
 
 class_names = {"BaseModel": BaseModel}
 
@@ -61,7 +62,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
             else:
-                print(dic_objects[key])
+                print(models.storage.all()[key])
+                #print(dic_objects[key])
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 
