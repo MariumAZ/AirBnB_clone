@@ -4,6 +4,7 @@
 import cmd
 from models.base_model import BaseModel
 import shlex
+from models import storage
 
 class_names = {"BaseModel": BaseModel}
 
@@ -40,8 +41,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")  
     def do_show(self, args):
-        from models import storage
-        dic_objects = storage.all()
         l = shlex.split(args)
         if len(l) == 0:
             print("** class name missing **")
@@ -54,28 +53,14 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing ** ")
             return
         if len(l) > 1 :
+            dic_objects = storage.all()
             id = l[1]
             key = c_name + '.' + id
             if key not in dic_objects:
                 print("** no instance found **")
                 return
             else:
-                print(dic_objects[key])    
-
-
-
-
-
-
-
-        pass        
-
-
-
-
-
-
-
+                print(dic_objects[key])
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 
