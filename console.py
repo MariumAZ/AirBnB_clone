@@ -2,6 +2,10 @@
 """ console """
 
 import cmd
+from models.base_model import BaseModel
+import shlex
+
+class_names = {"BaseModel": BaseModel}
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -22,6 +26,55 @@ class HBNBCommand(cmd.Cmd):
     def do_help(self, arg: str) :
         """ help methods"""
         return super().do_help(arg)
+    def do_create(self, args):
+        """ creates new instance """
+        if len(args) == 0:
+            print("** class name missing **")
+            return  
+        l = shlex.split(args)
+        c_name = l[0]
+        if c_name in class_names:
+            new_instance = class_names[c_name]()
+            new_instance.save()
+            print(new_instance.id)
+        else:
+            print("** class doesn't exist **")  
+    def do_show(self, args):
+        from models import storage
+        dic_objects = storage.all()
+        l = shlex.split(args)
+        if len(l) == 0:
+            print("** class name missing **")
+            return    
+        c_name = l[0] 
+        if c_name not in class_names:    
+            print("** class doesn't exist **")
+            return
+        if len(l) == 1:
+            print("** instance id missing ** ")
+            return
+        if len(l) > 1 :
+            id = l[1]
+            key = c_name + '.' + id
+            if key not in dic_objects:
+                print("** no instance found **")
+                return
+            else:
+                print(dic_objects[key])    
+
+
+
+
+
+
+
+        pass        
+
+
+
+
+
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
