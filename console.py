@@ -3,6 +3,9 @@
 import cmd
 
 class HBNBCommand(cmd.Cmd):
+    """
+    Command console
+    """
     intro = "-------------- Welcome to AirBnB console --------------  "
     prompt = '(hbnb) '
    
