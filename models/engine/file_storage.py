@@ -27,7 +27,7 @@ class FileStorage:
                 if isinstance(obj, dict):
                     FileStorage.__objects[k] = obj
                 else:    
-                    FileStorage.__objects[k] = obj.to_dict()
+                    FileStorage.__objects[k] = eval(obj).to_dict()
             json.dump(FileStorage.__objects, f)     
 
     def reload(self):
