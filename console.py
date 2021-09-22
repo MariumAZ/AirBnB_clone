@@ -113,8 +113,30 @@ class HBNBCommand(cmd.Cmd):
                         result.append(str(storage.all()[k]))
                         print(result)           
             else:
-                print("** class doesn't exist ** ")            
+                print("** class doesn't exist **") 
 
+    def update(self, args):
+        """ Updates an instance based on the class name """   
+        l = shlex.split(args)                
+        if len(l) == 4:
+            c_name, c_id, att_name, att_value = l
+            if c_name in class_names:
+                key = c_name + '.' + c_id
+                if key in storage.all():
+                    if att_name in storage.all()[key]:
+                        if type(att_value) == type(class_names[c_name].att_name):
+                            storage.all()[key][att_name] = att_value
+                        else:
+                            print("** value missing **")     
+                    else:
+                        print("** attribute name missing **")
+                else:
+                    print('** instance id missing **')
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")                        
+                        
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 
