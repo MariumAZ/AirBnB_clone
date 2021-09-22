@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
                 if k in storage.all():
                     if len(args) > 2:
                         if len(args) > 3:
-                            storage.all().update({args[2]: args[3]})
+                            setattr(storage.all()[k], args[2], args[3])
                             storage.save()
                         else:
                             print("** value missing **")     
