@@ -4,11 +4,18 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+
 import shlex
 from models import storage
 
 
-class_names = {"BaseModel": BaseModel, "User": User}
+class_names = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -127,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
                 if k in storage.all():
                     if len(args) > 2:
                         if len(args) > 3:
-                            print(storage.all()[k])
+                            #print(storage.all()[k])
                             setattr(storage.all()[k], args[2], args[3])
                             storage.all()[k].save()
                         else:
