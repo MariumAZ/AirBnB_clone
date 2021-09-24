@@ -155,22 +155,23 @@ class HBNBCommand(cmd.Cmd):
         Returns:
             [function]: [returns the function needed or error]
         """    
+        line = line[:-2]
         lst = line.split('.')
         if len(lst) > 1:
-            if lst[1] == "all()":
+            if lst[1] == "all":
                 return self.do_all(lst[0])  
 
-            elif lst[1] == "show()":
+            elif lst[1] == "show":
                     return self.do_show(lst[0] + ' ' + lst[2])
 
-            elif lst[1] == "destroy()":
+            elif lst[1] == "destroy":
                 return self.do_destroy(lst[0] + ' ' + lst[2])
 
-            elif lst[1] == "update()":
+            elif lst[1] == "update":
                 return (self.do_update(lst[0] + ' ' + lst[2] +
                                     ' ' + lst[3] + ' ' + lst[4]))
 
-            elif lst[1] == "count()":
+            elif lst[1] == "count":
                 print(len(storage.all()))       
         else:
             print("*** Unknown syntax: {}".format(line))
