@@ -146,7 +146,36 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print('** instance id missing **')
         else:
-            print("** class doesn't exist **")                    
+            print("** class doesn't exist **")     
+
+    def default(self, line):
+        """[default method]
+        Args:
+            line ([str]): [user's input]
+        Returns:
+            [function]: [returns the function needed or error]
+        """    
+        lst = line.split('.')
+        if len(lst) > 1:
+            if lst[1] == "all()":
+                return self.do_all(lst[0])  
+
+            elif lst[1] == "show()":
+                    return self.do_show(lst[0] + ' ' + lst[2])
+
+            elif lst[1] == "destroy()":
+                return self.do_destroy(lst[0] + ' ' + lst[2])
+
+            elif lst[1] == "update()":
+                return (self.do_update(lst[0] + ' ' + lst[2] +
+                                    ' ' + lst[3] + ' ' + lst[4]))
+
+            elif lst[1] == "count()":
+                print(len(storage.all()))       
+        else:
+            print("*** Unknown syntax: {}".format(line))
+            return False         
+
                         
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
