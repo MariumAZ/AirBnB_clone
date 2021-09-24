@@ -155,8 +155,7 @@ class HBNBCommand(cmd.Cmd):
         Returns:
             [function]: [returns the function needed or error]
         """    
-        line = line[:-2]
-        lst = line.split('.')
+        lst = (line.replace('(', '.').replace(',', '.').strip()[:-1].split('.'))
         if len(lst) > 1:
             if lst[1] == "all":
                 return self.do_all(lst[0])  
