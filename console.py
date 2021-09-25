@@ -34,10 +34,10 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self) -> bool:
         return False    
     def do_help(self, arg: str) :
-        """ help methods"""
+        """Help command"""
         return super().do_help(arg)
     def do_create(self, args):
-        """ creates new instance """
+        """Create command"""
         if len(args) == 0:
             print("** class name missing **")
             return  
@@ -72,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print(dic_objects[key])
     def do_show(self, args):
+        """Show command"""
         args = shlex.split(args)
         if len(args) == 0:
             print("** class name missing **")
