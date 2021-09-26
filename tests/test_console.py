@@ -25,6 +25,20 @@ class TestConsole(TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("help show")
             self.assertRegex(f.getvalue(), 'Show command')
+    def test_create_console_fail_missing(self):
+        """
+        Tests create method missing class name
+        """        
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create")
+            expected = "** class name missing **\n"
+            self.assertEqual(f.getvalue(), expected)
+    def test_create_console_fail_missing(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Paddle")
+            expected = "** class doesn't exist **\n"
+            self.assertEqual(expected, f.getvalue())
+
 
 
 
