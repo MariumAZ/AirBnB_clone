@@ -9,3 +9,7 @@ A mock object substitutes and imitates a real object within a testing environmen
 we can use patch as a decorator or as a context manager 
 
 giving as control over the scope in which the object will be mocked
+
+
+Now That we have a command interpreter for managing AirBnB objects. It's time to make them alive. For that we will Develop the fronted end where we will design/sketch/prototype each element.
+ 
